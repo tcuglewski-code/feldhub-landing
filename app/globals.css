@@ -1,26 +1,165 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Feldhub brand colors */
+  --color-forest: #1C3D2E;
+  --color-forest-dark: #0F2419;
+  --color-forest-mid: #2A5C42;
+  --color-amber-warm: #C8852A;
+  --color-amber-light: #E8A84A;
+  --color-parchment: #F8F5EF;
+  --color-parchment-dark: #EDE8E0;
+
+  /* Extended fh / am / st / tx palette */
+  --color-fh-900: #0F2419;
+  --color-fh-800: #1C3D2E;
+  --color-fh-700: #2D6A4F;
+  --color-fh-600: #3D8B6B;
+  --color-fh-500: #52A87E;
+  --color-fh-300: #A8DBBF;
+  --color-fh-100: #D4EFDF;
+  --color-fh-50:  #EFF9F4;
+  --color-am-600: #C8852A;
+  --color-am-400: #E8A84C;
+  --color-am-100: #FEF3C7;
+  --color-st-50:  #F8F5EF;
+  --color-st-100: #F0EBE0;
+  --color-st-200: #E0D9CE;
+  --color-st-400: #A09080;
+  --color-tx:     #1A1814;
+  --color-tx-m:   #5C5448;
+
+  /* Font families */
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-headline: "Barlow Condensed", sans-serif;
+  --font-body: Barlow, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Base styles */
+*, body {
+  font-family: Barlow, sans-serif;
+  color: #1A1814;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+h1, h2, h3, h4 {
+  font-family: "Barlow Condensed", sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.icon-filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Hero gradient */
+.hero-bg {
+  background: linear-gradient(145deg, #0F2419 0%, #1C3D2E 55%, #2D6A4F 100%);
+}
+
+/* Subtle furrow texture overlay */
+.furrow-texture {
+  background-image: repeating-linear-gradient(
+    -48deg,
+    transparent 0px,
+    transparent 28px,
+    rgba(255,255,255,0.028) 28px,
+    rgba(255,255,255,0.028) 30px
+  );
+}
+
+/* Feature card hover */
+.feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(28,61,46,0.14);
+}
+
+/* Branch card hover */
+.branch-card {
+  transition: all 0.2s ease;
+}
+.branch-card:hover {
+  background-color: #1C3D2E;
+}
+.branch-card:hover .branch-label {
+  color: #fff;
+}
+.branch-card:hover .branch-icon {
+  color: #C8852A;
+}
+.branch-card:hover .branch-sub {
+  color: #A8DBBF;
+}
+
+/* Step connector line */
+.step-line {
+  border-left: 2px dashed #C8852A;
+  margin-left: 1.5rem;
+}
+
+/* Nav blur on scroll */
+.nav-scrolled {
+  background: rgba(28,61,46,0.96);
+  backdrop-filter: blur(8px);
+}
+
+/* Smooth underline on nav links */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #C8852A;
+  transition: width 0.2s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Badge pill */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(200,133,42,0.18);
+  border: 1px solid rgba(200,133,42,0.4);
+  color: #E8A84C;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 99px;
+}
+
+/* Metrics */
+.metric-num {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  line-height: 1;
+  color: #C8852A;
+}
+
+/* Quote mark */
+.blockquote-mark {
+  font-family: Georgia, serif;
+  font-size: 5rem;
+  line-height: 0.5;
+  color: #C8852A;
+  opacity: 0.4;
 }
